@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 };
 
 import { cn } from "@/lib/utils";
+import Script from "next/script";
 
 const fontSans = FontSans({
 	subsets: ["latin"],
