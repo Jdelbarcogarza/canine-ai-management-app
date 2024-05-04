@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
 	}
 	
 	const response = await fetch(
-		"https://api-inference.huggingface.co/models/dima806/133_dog_breeds_image_detection",
+		process.env.HF_ENDPOINT ?? "",
 		{
 			headers: {
 				Authorization: "Bearer " + process.env.HF_TOKEN,
