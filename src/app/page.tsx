@@ -4,18 +4,20 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import axios from "axios";
 import Image from "next/image";
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, FormEventHandler, SyntheticEvent, useRef, useState } from "react";
 
 export default function Home() {
-	const [file, setFile] = useState("");
+	const [file, setFile] = useState<File | null>(null);
 	const imageContainerRef = useRef<HTMLImageElement | null>(null);
 
-	function handleChange(e) {
+	function handleChange(e: ChangeEvent<HTMLInputElement>) {
 		console.log(e.target.files);
-		setFile(e.target.files[0]);
+		if (e.target.files) {	
+			setFile(e.target.files[0]);
+		}
 	}
 
-	const analyzeImageWithAI = async (e) => {
+	const analyzeImageWithAI = async (e: SyntheticEvent) => {
 		e.preventDefault();
 
 		const req = await axios.post(
@@ -52,6 +54,7 @@ export default function Home() {
 				</div>
 				<Button type="submit">Hola</Button>
 
+			{}
 				<Image src={"https://placehold.co/100x200"} unoptimized id="photo" className="photo" alt="alt text" ref={imageContainerRef} width={100} height={200} />
   			<input type="file" accept="image/*" capture="environment" id="camera" onChange={displayPicture} />
 			</form>
