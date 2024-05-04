@@ -72,13 +72,13 @@ export default function Home() {
 			<h1 className="text-xl font-mono">Canine AI</h1>
 			<form
 				onSubmit={handleSubmit}
-				className="flex flex-col space-y-6 mt-4 w-full"
+				className="flex flex-col space-y-6 mt-4 w-full item-center justify-center max-w-lg"
 			>
 				<Image
 					src={"https://placehold.co/200x250"}
 					unoptimized
 					id="photo"
-					className="w-full h-auto object-cover"
+					className="w-full h-auto object-cover  self-center"
 					alt="alt text"
 					ref={imageContainerRef}
 					width={100}
