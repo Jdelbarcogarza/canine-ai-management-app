@@ -3,10 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import axios from "axios";
-import { useState } from "react";
+import Image from "next/image";
+import { ChangeEvent, useRef, useState } from "react";
 
 export default function Home() {
 	const [file, setFile] = useState("");
+	const imageContainerRef = useRef<HTMLImageElement | null>(null);
 
 	function handleChange(e) {
 		console.log(e.target.files);
@@ -31,6 +33,16 @@ export default function Home() {
 		console.log(req.data);
 	};
 
+
+	const displayPicture = async (e: ChangeEvent<HTMLInputElement>) => {
+
+		if (imageContainerRef.current && imageContainerRef.current && e.target.files) {
+
+			imageContainerRef.current.src = URL.createObjectURL(e.target.files[0])
+		}
+
+	}
+
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-between p-24">
 			<form onSubmit={analyzeImageWithAI}>
@@ -39,6 +51,9 @@ export default function Home() {
 					<Input id="picture" type="file" onChange={handleChange} />
 				</div>
 				<Button type="submit">Hola</Button>
+
+				<Image src={"https://placehold.co/100x200"} unoptimized id="photo" className="photo" alt="alt text" ref={imageContainerRef} width={100} height={200} />
+  			<input type="file" accept="image/*" capture="environment" id="camera" onChange={displayPicture} />
 			</form>
 		</main>
 	);

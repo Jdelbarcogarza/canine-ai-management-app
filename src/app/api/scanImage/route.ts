@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
 		"https://api-inference.huggingface.co/models/dima806/133_dog_breeds_image_detection",
 		{
 			headers: {
-				Authorization: "Bearer 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",
+				Authorization: "Bearer " + process.env.HF_TOKEN,
 			},
 			method: "POST",
 			body: filename,
