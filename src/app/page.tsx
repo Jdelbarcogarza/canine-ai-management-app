@@ -22,7 +22,7 @@ export default function Home() {
 	// request to backend
 	const analyzeImageWithAI = async (file: File) => {
 		const req = await axios.post(
-			"http://localhost:3000/api/scanImage",
+			process.env.BASE_URL + "/api/scanImage",
 			{
 				filename: file,
 			},
