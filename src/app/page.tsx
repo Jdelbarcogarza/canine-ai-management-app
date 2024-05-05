@@ -21,8 +21,9 @@ export default function Home() {
 
 	// request to backend
 	const analyzeImageWithAI = async (file: File) => {
+
 		const req = await axios.post(
-			process.env.BASE_URL + "/api/scanImage",
+			process.env.NEXT_PUBLIC_BASE_URL + "/api/scanImage",
 			{
 				filename: file,
 			},
