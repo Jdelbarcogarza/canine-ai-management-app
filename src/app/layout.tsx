@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 
 import { cn } from "@/lib/utils";
 import Script from "next/script";
+import { Button } from "@/components/ui/button";
 
 const fontSans = FontSans({
 	subsets: ["latin"],
