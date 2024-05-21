@@ -16,22 +16,21 @@ import { redirect } from "next/navigation";
 
 export default function Login() {
 
-	const logIn = async (formData: FormData) => {
+	const createAccount = async (formData: FormData) => {
 		"use server"
 		const userPassword = formData.get("password") as string;
 		const userEmail = formData.get("email") as string;
 
-		const { data, error } = await supabase.auth.signInWithPassword({
+		const { data, error } = await supabase.auth.signUp({
 			email: userEmail,
 			password: userPassword,
 		})
 
-		
 		if (!error) {
-			return redirect("/dashboard");
+			return redirect("/dashboard")
 		}
 
-		console.log("Ha habido un iniciando sesion", error)
+		console.log("Ha habido un error creando a cuenta", error)
 
 		console.log("This is the entered data", userEmail, userPassword);
 	};
@@ -40,38 +39,32 @@ export default function Login() {
 		<div className="flex flex-col justify-center items-center absolute inset-0 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_80%,transparent_100%)]">
 			<Card className="w-full max-w-sm">
 				<CardHeader>
-					<CardTitle className="text-2xl">Login</CardTitle>
+					<CardTitle className="text-2xl">Crear cuenta</CardTitle>
 					<CardDescription>
-						Enter your email below to login to your account.
+						Enter your email below to create your account.
 					</CardDescription>
 				</CardHeader>
-				<form action={logIn}>
-					<CardContent className="grid gap-4">
-						<div className="grid gap-2">
-							<Label htmlFor="email">Email</Label>
-							<Input
-								name="email"
-								id="email"
-								type="email"
-								placeholder="m@example.com"
-								required
-							/>
-						</div>
-						<div className="grid gap-2">
-							<Label htmlFor="password">Password</Label>
-							<Input name="password" id="password" type="password" required />
-						</div>
-					</CardContent>
-					<CardFooter className="flex flex-col">
-						<Button className="w-full" type="submit">
-							Sign in
-						</Button>
-						<Separator orientation="horizontal" className="my-3" />
+				<form action={createAccount}>
 
-						<Button asChild variant="link">
-							<Link href="/signUp">Crear una cuenta</Link>
-						</Button>
-					</CardFooter>
+				<CardContent className="grid gap-4">
+					<div className="grid gap-2">
+						<Label htmlFor="email">Email</Label>
+						<Input
+							id="email"
+							type="email"
+							name="email"
+							placeholder="m@example.com"
+							required
+						/>
+					</div>
+					<div className="grid gap-2">
+						<Label htmlFor="password">Password</Label>
+						<Input id="password" type="password" name="password" required />
+					</div>
+				</CardContent>
+				<CardFooter>
+					<Button className="w-full" type="submit">Sign in</Button>
+				</CardFooter>
 				</form>
 			</Card>
 		</div>
