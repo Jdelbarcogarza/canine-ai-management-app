@@ -2,9 +2,20 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectItem,
+	SelectLabel,
+	SelectValue,
+	SelectTrigger,
+} from "@/components/ui/select";
+import { supabase } from "@/lib/supabase/client";
 import BreedOption from "@/types/BreedOption";
 import axios from "axios";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import {
 	ChangeEvent,
 	FormEventHandler,
@@ -12,16 +23,22 @@ import {
 	useRef,
 	useState,
 } from "react";
+import {v4 as uuidv4} from "uuid";
 
 export default function Home() {
 	const [file, setFile] = useState<File | null>(null);
 	const imageContainerRef = useRef<HTMLImageElement | null>(null);
-	const [analysis, setAnalysis] = useState<BreedOption[]>([]);
+	const [analysis, setAnalysis] = useState<BreedOption[]>([
+		{ label: "Chihuahua", score: 0.12 },
+		{ label: "French bulldog", score: 0.321 },
+		{ label: "Husky", score: 0.341 },
+	]);
 	const [isLoading, setIsLoading] = useState(false);
+	const [dogRace, setDogRace] = useState("");
+	const navigator = useRouter()
 
 	// request to backend
 	const analyzeImageWithAI = async (file: File) => {
-
 		const req = await axios.post(
 			process.env.NEXT_PUBLIC_BASE_URL + "/api/scanImage",
 			{
@@ -35,7 +52,6 @@ export default function Home() {
 		);
 
 		return req;
-
 	};
 
 	// diplay image and set state
@@ -62,17 +78,36 @@ export default function Home() {
 			const req = await analyzeImageWithAI(file);
 
 			setAnalysis(req.data.message);
+			if (req.data.message) {
+				setDogRace(req.data.message[0].label);
+			}
 		}
 
 		setIsLoading(false);
 	};
 
+	const registerPatient = async (e: SyntheticEvent) => {
+		e.preventDefault();
+		// TODO. generar IDs con UUID desde el front.
+
+		const recordId = uuidv4();
+
+		const {data, error} = await supabase.from("Mascotas").insert([{id: recordId, raza: dogRace}]);
+
+		if (!error) {
+			console.log("This is the data that came back from the update", data);
+			navigator.push(`/dashboard/newPatient/${recordId}`)
+		}
+
+		console.error("Error al intentar subir data a supabase",error)
+
+	};
+
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-start md:justify-between p-8 md:p-24">
-			<h1 className="text-xl font-mono">Canine AI</h1>
+		<main className="flex flex-col h-full items-center justify-between md:justify-between p-4 md:p-24">
 			<form
 				onSubmit={handleSubmit}
-				className="flex flex-col space-y-6 mt-4 w-full item-center justify-center max-w-lg"
+				className="flex flex-col space-y-4 mt-4 w-full item-center justify-center max-w-lg"
 			>
 				<Image
 					src={"https://placehold.co/200x250"}
@@ -100,27 +135,43 @@ export default function Home() {
 
 				<Button type="submit">Scan</Button>
 			</form>
-			<div className="w-full max-w-md mt-8 border rounded p-2 flex-grow">
-				<p className="font-mono">Results 🐶</p>
-				<p className="text-xs">Ordered by score</p>
 
+			<form
+				onSubmit={registerPatient}
+				className="w-full flex flex-col items-center justify-center space-y-4"
+			>
 				{isLoading && (
 					<div className="relative mt-6 mx-auto inset-x-0 h-10 w-10 animate-spin rounded-full border-4 border-gray-200 border-t-neutral-500" />
 				)}
 
-				{analysis.length > 0 &&
-					analysis.map((element, index) => (
-						<div
-							key={element.label}
-							className="border bg-slate-200 p-1 flex flex-col w-full"
+				<>
+					<Label className="w-full">Razas identidicadas</Label>
+					{analysis.length > 0 && (
+						<Select
+							disabled={isLoading}
+							value={dogRace}
+							onValueChange={(e) => setDogRace(e)}
 						>
-							<p>
-								<span className="font-bold">#{index}</span> {element.label}
-							</p>
-							<p><span>Fidelity</span>{element.score.toFixed(5)}</p>
-						</div>
-					))}
-			</div>
+							<SelectTrigger className="">
+								<SelectValue placeholder={"Raza escaneada"} />
+							</SelectTrigger>
+							<SelectContent>
+								<SelectGroup>
+									{analysis.map((element, index) => (
+										<SelectItem key={element.label} value={element.label}>
+											{element.label}
+										</SelectItem>
+									))}
+								</SelectGroup>
+							</SelectContent>
+						</Select>
+					)}
+				</>
+
+				<Button className="self-end" type="submit">
+					Siguiente
+				</Button>
+			</form>
 		</main>
 	);
 }
