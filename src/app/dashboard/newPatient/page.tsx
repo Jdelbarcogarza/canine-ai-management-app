@@ -104,10 +104,10 @@ export default function Home() {
 	};
 
 	return (
-		<main className="flex flex-col h-full items-center justify-between md:justify-between p-4 md:p-24">
+		<main className="flex flex-col h-full items-center md:justify-between p-4 md:p-24">
 			<form
 				onSubmit={handleSubmit}
-				className="flex flex-col space-y-4 mt-4 w-full item-center justify-center max-w-lg"
+				className="flex flex-col space-y-4 mt-4 mb-10 w-full item-center justify-center max-w-lg"
 			>
 				<Image
 					src={"https://placehold.co/200x250"}
@@ -120,12 +120,12 @@ export default function Home() {
 					height={200}
 				/>
 
-				<Button asChild variant="outline">
-					<Label htmlFor="camera">Take picture</Label>
+				<Button asChild variant="outline" className="font-medium text-primary-light-blue border-primary-light-blue active:bg-primary-light-blue active:text-white">
+					<Label htmlFor="camera">Captura una foto</Label>
 				</Button>
 				<Input
 					type="file"
-					placeholder="Take a picture"
+					placeholder="Captura una foto"
 					accept="image/*"
 					capture="environment"
 					id="camera"
@@ -133,7 +133,7 @@ export default function Home() {
 					onChange={displayPicture}
 				/>
 
-				<Button type="submit">Scan</Button>
+				<Button type="submit" className="font-medium text-white bg-primary-light-blue active:bg-white active:text-primary-light-blue">Guardar</Button>
 			</form>
 
 			<form
@@ -145,7 +145,7 @@ export default function Home() {
 				)}
 
 				<>
-					<Label className="w-full">Razas identidicadas</Label>
+					<Label className="text-base font-medium text-primary-dark-blue w-full">La raza del paciente es:</Label>
 					{analysis.length > 0 && (
 						<Select
 							disabled={isLoading}
@@ -153,7 +153,7 @@ export default function Home() {
 							onValueChange={(e) => setDogRace(e)}
 						>
 							<SelectTrigger className="">
-								<SelectValue placeholder={"Raza escaneada"} />
+								<SelectValue placeholder={"Raza del paciente"} />
 							</SelectTrigger>
 							<SelectContent>
 								<SelectGroup>
@@ -168,7 +168,7 @@ export default function Home() {
 					)}
 				</>
 
-				<Button className="self-end" type="submit">
+				<Button className="self-end font-medium text-white bg-primary-light-blue active:bg-white active:text-primary-light-blue" type="submit">
 					Siguiente
 				</Button>
 			</form>
