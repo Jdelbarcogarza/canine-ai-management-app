@@ -140,15 +140,15 @@ export default function DashboardLayout({
 					</div>
 
 					<div className="flex flex-col">
-						<header className="flex h-16 items-center place-content-between gap-4 px-4 lg:h-[60px] lg:px-6 bg-primary-light-blue">
+						<header className="sticky top-0 left-0 right-0 z-10 flex h-16 items-center place-content-between gap-4 px-4 lg:h-[60px] lg:px-6 bg-primary-light-blue">
 							<Sheet>
 								<SheetTrigger asChild>
 									<Button
 										variant="outline"
 										size="icon"
-										className="shrink-0 md:hidden bg-transparent border-none"
+										className="shrink-0 md:hidden bg-transparent border-none focus:bg-transparent "
 									>
-										<Menu className="h-5 w-5 " />
+										<Menu className="h-5 w-5 stroke-white " />
 										<span className="sr-only ">Toggle navigation menu</span>
 									</Button>
 								</SheetTrigger>
