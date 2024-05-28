@@ -26,24 +26,24 @@ import { cn } from "@/lib/utils"
 const PatientForm = ({ params }: { params: { patientId: number } }) => {
   const [date, setDate] = React.useState<Date>()
   return (
-    <div className='px-3 text-primary-dark-blue'>
+    <div className='text-primary-dark-blue'>
       <div className='flex flex-col justify-center text-center items-center'>
-        <p className="text-3xl font-bold mb-4">Registrar al paciente</p>
+        <h1 className="mb-4">Registrar al paciente</h1>
         <p className='w-10/12 text-sm text-slate-400 mb-4'>Ingresa aqui la información del paciente para registrarlo en el sistema</p>
       </div>
       
       {/*<p className='text-xl text-red-600'>Este es el id {params.patientId} (de momento es falso!!)</p>*/}
       <form>
         <div className="grid w-full max-w-sm items-center gap-1.5 mb-4">
-          <label className=" text-md font-bold mb-1">Nombre</label>          
+          <h4 className="mb-1">Nombre</h4>          
           <Input type="text" id="name" placeholder="Nombre" />
         </div>
         <div className="grid w-full max-w-sm items-center gap-1.5 mb-4">
-          <label className="  text-md font-bold mb-1">Raza</label>          
+          <h4 className="mb-1">Raza</h4>          
           <Input type="text" id="raza" placeholder="Raza" disabled/>
         </div>
         <div className="grid w-full max-w-sm items-center gap-1.5 mb-4">
-          <label className="  text-md font-bold mb-1">Sexo</label>          
+          <h4 className="mb-1">Sexo</h4>          
           <Select
             //disabled={isLoading}
             //value={dogRace}
@@ -67,7 +67,7 @@ const PatientForm = ({ params }: { params: { patientId: number } }) => {
           </Select>
         </div>
         <div className="grid w-full max-w-sm items-center gap-1.5 mb-4">
-          <label className="  text-md font-bold mb-1">Color</label>          
+          <h4 className="mb-1">Color</h4>          
           <Select
             //disabled={isLoading}
             //value={dogRace}
@@ -91,7 +91,7 @@ const PatientForm = ({ params }: { params: { patientId: number } }) => {
           </Select>
         </div>
         <div className="grid w-full max-w-sm items-center gap-1.5 mb-4">
-          <label className="  text-md font-bold mb-1">Fecha de nacimiento</label>     
+          <h4 className="mb-1">Fecha de nacimiento</h4>     
           <Popover>
             <PopoverTrigger asChild>
               <Button
@@ -116,25 +116,25 @@ const PatientForm = ({ params }: { params: { patientId: number } }) => {
           </Popover>
         </div>
         <div className="grid w-full max-w-sm items-center gap-1.5 mb-4">
-          <label className="  text-md font-bold mb-1">Comentarios adicionales</label>          
+          <h4 className="mb-1">Comentarios adicionales</h4>          
           <Textarea placeholder="Ingresa aquí tus comentarios" />
         </div>
-        <p className=" text-2xl font-bold mt-11 mb-4">Datos del responsable</p>
+        <h2 className="mt-11 mb-4">Datos del responsable</h2>
         <div className="grid w-full max-w-sm items-center gap-1.5 mb-4">
-          <label className=" text-md font-bold mb-1">Nombre del responsable</label>          
+          <h4 className="mb-1">Nombre del responsable</h4>          
           <Input type="text" id="nameR" placeholder="Nombre" />
         </div>
         <div className="grid w-full max-w-sm items-center gap-1.5 mb-4">
-          <label className=" text-md font-bold mb-1">Apellido(s)</label>          
+          <h4 className="mb-1">Apellido(s)</h4>          
           <Input type="text" id="lasName" placeholder="Apellido(s)" />
         </div>
         <div className="grid w-full max-w-sm items-center gap-1.5 mb-4">
-          <label className=" text-md font-bold mb-1">Telefono</label>          
+          <h4 className="mb-1">Telefono</h4>          
           <Input type="number" id="phone" placeholder="Telefono" />
         </div>
       </form>
-      <Button asChild className="mt-11 font-medium text-white bg-primary-light-blue active:bg-white active:text-primary-light-blue" type="submit">
-        <Link href="/dashboard/newPatient">Hay que asignar la ruta correcta al resumen</Link>
+      <Button asChild className="flex justify-center mt-5 font-medium text-white bg-primary-light-blue active:bg-white active:text-primary-light-blue" type="submit">
+        <Link href="/dashboard/newPatient/{params.patientId}/summary">Siguiente</Link>
       </Button>
 
     </div>

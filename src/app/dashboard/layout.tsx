@@ -202,7 +202,7 @@ export default function DashboardLayout({
 							</DropdownMenu>
 						</header>
 						{/* container for content */}
-						<main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+						<main className="flex flex-1 flex-col gap-4 p-8 lg:gap-6 lg:p-6">
 							{children}
 						</main>
 					</div>

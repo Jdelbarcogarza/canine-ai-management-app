@@ -1,4 +1,31 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-  
+@tailwind components;
+@tailwind utilities;
+
+h1{
+  /* 3XL */
+  font-size: 1.875rem/* 30px */;
+  line-height: 2.25rem/* 36px */;
+  font-weight: 700;
+}
+
+h2{
+  /* 2XL */
+  font-size: 1.5rem/* 24px */;
+  line-height: 2rem/* 32px */;
+  font-weight: 700;
+}
+
+h3{
+  /* XL */
+  font-size: 1.25rem; /* 20px */
+line-height: 1.75rem; /* 28px */
+  font-weight: 700;
+}
+
+h4{
+  /* lg */
+  font-size: 1.125rem/* 18px */;
+  line-height: 1.75rem/* 28px */;
+  font-weight: 700;
+}

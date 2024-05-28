@@ -104,7 +104,7 @@ export default function Home() {
 	};
 
 	return (
-		<main className="flex flex-col h-full items-center md:justify-between p-4 md:p-24">
+		<main className="flex flex-col h-full items-center md:justify-between md:p-24">
 			<form
 				onSubmit={handleSubmit}
 				className="flex flex-col space-y-4 mt-4 mb-10 w-full item-center justify-center max-w-lg"
