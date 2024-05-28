@@ -39,6 +39,7 @@ const config = {
       colors:{
         "primary-light-blue" : "#3EC1C9",
         "primary-dark-blue" : '#364F6B',
+        "cream-light" : "#F6F6F6",
       },
     },
   },

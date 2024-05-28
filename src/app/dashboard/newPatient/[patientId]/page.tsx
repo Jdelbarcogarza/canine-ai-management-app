@@ -97,7 +97,7 @@ const PatientForm = ({ params }: { params: { patientId: number } }) => {
               <Button
                 variant={"outline"}
                 className={cn(
-                  "justify-start text-left font-normal",
+                  "justify-start text-left font-normal border-neutral-200",
                   !date && "text-muted-foreground"
                 )}
               >
@@ -133,7 +133,7 @@ const PatientForm = ({ params }: { params: { patientId: number } }) => {
           <Input type="number" id="phone" placeholder="Telefono" />
         </div>
       </form>
-      <Button asChild className="flex justify-center mt-5 font-medium text-white bg-primary-light-blue active:bg-white active:text-primary-light-blue" type="submit">
+      <Button asChild className="flex justify-center mt-5 font-medium" type="submit">
         <Link href="/dashboard/newPatient/{params.patientId}/summary">Siguiente</Link>
       </Button>
 

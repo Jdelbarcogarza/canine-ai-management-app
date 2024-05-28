@@ -36,19 +36,20 @@ export default function Login() {
 	};
 
 	return (
-		<div className="flex flex-col justify-center items-center absolute inset-0 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_80%,transparent_100%)]">
+		<div className="flex flex-col justify-center items-center absolute h-full w-full bg-cream-light">
+			<img className="fixed top-32 justify-center h-24 mb-12" src={"/fullLogo.jpeg" }/>
 			<Card className="w-full max-w-sm">
 				<CardHeader>
-					<CardTitle className="text-2xl">Crear cuenta</CardTitle>
-					<CardDescription>
-						Enter your email below to create your account.
+					<CardTitle className="text-2xl text-center text-primary-dark-blue">Crear cuenta</CardTitle>
+					<CardDescription className="text-center">
+						Ingresa tu correo electrónico y una contraseña para crear tu cuenta.
 					</CardDescription>
 				</CardHeader>
 				<form action={createAccount}>
 
 				<CardContent className="grid gap-4">
-					<div className="grid gap-2">
-						<Label htmlFor="email">Email</Label>
+					<div className="grid gap-2 text-primary-dark-blue">
+						<Label htmlFor="email">Correo electrónico</Label>
 						<Input
 							id="email"
 							type="email"
@@ -57,13 +58,13 @@ export default function Login() {
 							required
 						/>
 					</div>
-					<div className="grid gap-2">
-						<Label htmlFor="password">Password</Label>
+					<div className="grid gap-2 text-primary-dark-blue">
+						<Label htmlFor="password">Contraseña</Label>
 						<Input id="password" type="password" name="password" required />
 					</div>
 				</CardContent>
 				<CardFooter>
-					<Button className="w-full" type="submit">Sign in</Button>
+					<Button className="w-full" type="submit">Crear cuenta</Button>
 				</CardFooter>
 				</form>
 			</Card>

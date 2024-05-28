@@ -120,7 +120,7 @@ export default function Home() {
 					height={200}
 				/>
 
-				<Button asChild variant="outline" className="font-medium text-primary-light-blue border-primary-light-blue active:bg-primary-light-blue active:text-white">
+				<Button asChild variant="outline" className="font-medium">
 					<Label htmlFor="camera">Captura una foto</Label>
 				</Button>
 				<Input
@@ -133,7 +133,7 @@ export default function Home() {
 					onChange={displayPicture}
 				/>
 
-				<Button type="submit" className="font-medium text-white bg-primary-light-blue active:bg-white active:text-primary-light-blue">Guardar</Button>
+				<Button type="submit" className="font-medium">Guardar</Button>
 			</form>
 
 			<form
@@ -168,7 +168,7 @@ export default function Home() {
 					)}
 				</>
 
-				<Button className="self-end font-medium text-white bg-primary-light-blue active:bg-white active:text-primary-light-blue" type="submit">
+				<Button className="self-end font-medium" type="submit">
 					Siguiente
 				</Button>
 			</form>
