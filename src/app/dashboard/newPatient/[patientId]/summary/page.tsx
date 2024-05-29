@@ -57,10 +57,10 @@ return(
             </div>
         </div>
         <div className="flex flex-row justify-center items-center space-x-6">
-            <Button asChild variant="outline" className="font-medium text-primary-light-blue border-primary-light-blue active:bg-primary-light-blue active:text-white">
+            <Button asChild variant="outline" className="font-medium">
                 <Link href="/dashboard/newPatient/{params.patientId}">Regresar</Link>
             </Button>
-            <Button asChild className="font-medium text-white bg-primary-light-blue active:bg-white active:text-primary-light-blue" type="submit">
+            <Button asChild className="font-medium" type="submit">
                 <Link href="/dashboard">Guardar</Link>
             </Button>
         </div>
