@@ -1,9 +1,44 @@
-import React from 'react'
+import PatientsTable from "@/components/ui/dashboard/PatientsTable";
+import { supabase } from "@/lib/supabase/client";
+import { format, subWeeks } from "date-fns";
+import Error from "next/error";
+import React from "react";
 
-const Dashboard = () => {
-  return (
-    <div>Dashboard</div>
-  )
+async function patientsList() {
+	// obtener todos los pacientes registrados esta semana
+	const patients = await supabase
+		.from("Mascotas")
+		.select("*", { count: "exact" })
+		.gt("created_at", subWeeks(new Date(), 1).toISOString());
+
+	console.log(patients);
+
+	if (!patients.error) {
+		return { patients: patients.data as Pet[], totalPatients: patients.count };
+	}
+
+	console.log(patients.error);
+
+	return { message: "ERROR" };
 }
 
-export default Dashboard
+const Dashboard = async () => {
+	const { patients, totalPatients } = await patientsList();
+
+	console.log("LIST", patients);
+
+	return (
+		<div>
+			<h2>Tabla de pacientes</h2>
+
+			<div className="flex">
+				<PatientsTable
+					patients={patients ? patients : []}
+					totalPatients={totalPatients ? totalPatients : 0}
+				/>
+			</div>
+		</div>
+	);
+};
+
+export default Dashboard;
