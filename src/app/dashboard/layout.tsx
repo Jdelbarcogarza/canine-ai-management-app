@@ -47,7 +47,7 @@ const fontSans = FontSans({
 
 // Opt out of caching for all data requests in the route segment
 export const dynamic = 'force-dynamic'
-export const revalidate = false;
+const revalidate = false;
 
 export default function DashboardLayout({
 	children,
