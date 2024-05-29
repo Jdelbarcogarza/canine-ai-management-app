@@ -12,6 +12,7 @@ import {
 	TableRow,
 } from "@/components/ui/table";
 import { formatDate } from 'date-fns';
+import { useRouter } from 'next/navigation';
 
 interface Props {
   patients: Pet[];
@@ -19,6 +20,9 @@ interface Props {
 }
 
 const PatientsTable: React.FC<Props> = ({patients, totalPatients}) => {
+
+  const navigator = useRouter()
+
   return (
     <Table>
     <TableCaption>
@@ -35,7 +39,7 @@ const PatientsTable: React.FC<Props> = ({patients, totalPatients}) => {
     <TableBody>
       {patients.length > 0 &&
         patients.map((patient: Pet) => (
-          <TableRow key={patient.id} onClick={() => console.log("HOLA ROW", patient.id)}>
+          <TableRow key={patient.id} onClick={() => navigator.push(`/dashboard/patient/${patient.id}`)}>
             <TableCell className="font-medium">
               {patient.nombre_perro}
             </TableCell>

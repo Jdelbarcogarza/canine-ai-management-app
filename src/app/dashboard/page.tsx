@@ -17,15 +17,11 @@ async function patientsList() {
 		return { patients: patients.data as Pet[], totalPatients: patients.count };
 	}
 
-	console.log(patients.error);
-
 	return { message: "ERROR" };
 }
 
 const Dashboard = async () => {
 	const { patients, totalPatients } = await patientsList();
-
-	console.log("LIST", patients);
 
 	return (
 		<div>
