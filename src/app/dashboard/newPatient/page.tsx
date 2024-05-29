@@ -23,7 +23,7 @@ import {
 	useRef,
 	useState,
 } from "react";
-import {v4 as uuidv4} from "uuid";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Home() {
 	const [file, setFile] = useState<File | null>(null);
@@ -35,7 +35,7 @@ export default function Home() {
 	]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [dogRace, setDogRace] = useState("");
-	const navigator = useRouter()
+	const navigator = useRouter();
 
 	// request to backend
 	const analyzeImageWithAI = async (file: File) => {
@@ -92,15 +92,25 @@ export default function Home() {
 
 		const recordId = uuidv4();
 
-		const {data, error} = await supabase.from("Mascotas").insert([{id: recordId, raza: dogRace}]);
+		const { data, error } = await supabase
+			.from("Mascotas")
+			.insert([{ id: recordId, raza: dogRace }]);
+
+			// subir archivo a storage
+		if (file) {
+			await supabase.storage
+				.from("dogPictures")
+				.upload(`public/${recordId}.png`, file, {
+					cacheControl: "3600",
+				});
+		}
 
 		if (!error) {
 			console.log("This is the data that came back from the update", data);
-			navigator.push(`/dashboard/newPatient/${recordId}`)
+			navigator.push(`/dashboard/newPatient/${recordId}`);
 		}
 
-		console.error("Error al intentar subir data a supabase",error)
-
+		console.error("Error al intentar subir data a supabase", error);
 	};
 
 	return (
@@ -120,7 +130,11 @@ export default function Home() {
 					height={200}
 				/>
 
-				<Button asChild variant="outline" className="font-medium text-primary-light-blue border-primary-light-blue active:bg-primary-light-blue active:text-white">
+				<Button
+					asChild
+					variant="outline"
+					className="font-medium text-primary-light-blue border-primary-light-blue active:bg-primary-light-blue active:text-white"
+				>
 					<Label htmlFor="camera">Captura una foto</Label>
 				</Button>
 				<Input
@@ -133,7 +147,12 @@ export default function Home() {
 					onChange={displayPicture}
 				/>
 
-				<Button type="submit" className="font-medium text-white bg-primary-light-blue active:bg-white active:text-primary-light-blue">Guardar</Button>
+				<Button
+					type="submit"
+					className="font-medium text-white bg-primary-light-blue active:bg-white active:text-primary-light-blue"
+				>
+					Guardar
+				</Button>
 			</form>
 
 			<form
@@ -145,7 +164,9 @@ export default function Home() {
 				)}
 
 				<>
-					<Label className="text-base font-medium text-primary-dark-blue w-full">La raza del paciente es:</Label>
+					<Label className="text-base font-medium text-primary-dark-blue w-full">
+						La raza del paciente es:
+					</Label>
 					{analysis.length > 0 && (
 						<Select
 							disabled={isLoading}
@@ -168,7 +189,10 @@ export default function Home() {
 					)}
 				</>
 
-				<Button className="self-end font-medium text-white bg-primary-light-blue active:bg-white active:text-primary-light-blue" type="submit">
+				<Button
+					className="self-end font-medium text-white bg-primary-light-blue active:bg-white active:text-primary-light-blue"
+					type="submit"
+				>
 					Siguiente
 				</Button>
 			</form>
