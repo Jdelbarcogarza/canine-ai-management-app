@@ -1,4 +1,4 @@
-import { Label } from "@/components/ui/label";
+import Link from "next/link";
 import { supabase } from "@/lib/supabase/client";
 import { formatDate } from "date-fns";
 
@@ -29,15 +29,26 @@ export default async function PatientDetails({
 	console.log(pet, owner);
 
 	return (
-		<div>
-			<h2>Detalles de paciente</h2>
-			<div className="relative overflow-x-auto rounded-md">
-				<table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
+		<div className="flex flex-col">
+			<div className="flex flex-row mb-8 space-x-12">
+				<button type="button">
+					<Link href="/dashboard">
+						<svg className="w-5 h-5 text-primary-dark-blue" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+							<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"/>
+						</svg>
+					</Link>
+				</button>
+				<h2 className="text-primary-dark-blue">Detalles de paciente</h2>
+			</div>
+			<img className="w-80 rounded-lg mb-6" src={"/dogExample.jpeg"}/>
+			<div className="relative overflow-x-auto w-80 rounded-md mb-4 border border-gray-200">
+				<table className="w-full text-sm text-left rtl:text-right text-gray-900 ">
+					<caption className="text-center bg-gray-50 p-3 text-primary-dark-blue font-bold">Datos del paciente</caption>
 					<tbody>
 						<tr className="bg-white border-b  ">
 							<th
 								scope="row"
-								className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+								className="px-6 py-4 font-medium whitespace-nowrap "
 							>
 								Nombre:
 							</th>
@@ -46,7 +57,7 @@ export default async function PatientDetails({
 						<tr className="bg-white border-b  ">
 							<th
 								scope="row"
-								className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+								className="px-6 py-4 font-medium whitespace-nowrap "
 							>
 								Raza:
 							</th>
@@ -55,7 +66,7 @@ export default async function PatientDetails({
 						<tr className="bg-white border-b  ">
 							<th
 								scope="row"
-								className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+								className="px-6 py-4 font-medium whitespace-nowrap "
 							>
 								Sexo:
 							</th>
@@ -64,22 +75,65 @@ export default async function PatientDetails({
 						<tr className="bg-white border-b  ">
 							<th
 								scope="row"
-								className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+								className="px-6 py-4 font-medium whitespace-nowrap "
 							>
 								Color:
 							</th>
 							<td className="px-6 py-4">{pet!.color}</td>
 						</tr>
-						<tr className="bg-white">
+						<tr className="bg-white border-b ">
 							<th
 								scope="row"
-								className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+								className="px-6 py-4 font-medium whitespace-nowrap "
 							>
 								Fecha de nacimiento:
 							</th>
 							<td className="px-6 py-4">
 								{formatDate(new Date(pet!.fecha_nac), "dd/MM/yyyy")}
 							</td>
+						</tr>
+						<tr className="bg-white">
+							<th
+								scope="row"
+								className="px-6 py-4 font-medium whitespace-nowrap "
+							>
+								Comentarios
+							</th>
+							<td className="px-6 py-4">{pet!.comentarios}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div className="relative overflow-x-auto w-80 rounded-md border border-gray-200">
+				<table className="w-full text-sm text-left rtl:text-right text-gray-900 ">
+					<caption className="text-center bg-gray-50 p-3 text-primary-dark-blue font-bold">Datos del responsable</caption>
+					<tbody>
+						<tr className="bg-white border-b  ">
+							<th
+								scope="row"
+								className="px-6 py-4 font-medium whitespace-nowrap "
+							>
+								Nombre:
+							</th>
+							<td className="px-6 py-4">{owner!.Nombre}</td>
+						</tr>
+						<tr className="bg-white border-b  ">
+							<th
+								scope="row"
+								className="px-6 py-4 font-medium whitespace-nowrap "
+							>
+								Apellido:
+							</th>
+							<td className="px-6 py-4">{owner!.Apellido}</td>
+						</tr>
+						<tr className="bg-white">
+							<th
+								scope="row"
+								className="px-6 py-4 font-medium whitespace-nowrap "
+							>
+								Celular:
+							</th>
+							<td className="px-6 py-4">{owner!.Tel}</td>
 						</tr>
 					</tbody>
 				</table>

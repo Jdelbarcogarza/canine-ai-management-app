@@ -22,16 +22,20 @@ async function patientsList() {
 
 const Dashboard = async () => {
 	const { patients, totalPatients } = await patientsList();
-
 	return (
 		<div>
-			<h2>Tabla de pacientes</h2>
+			<div>
+				<h1 className="text-primary-dark-blue mb-2">Tabla de pacientes</h1>
+				<p className="text-sm text-slate-400 mb-8">Haga click en la fila para ver mas información de cada paciente</p>
 
-			<div className="flex">
-				<PatientsTable
-					patients={patients ? patients : []}
-					totalPatients={totalPatients ? totalPatients : 0}
-				/>
+				<div className="flex flex-start w-80">
+					<div className="overflow-scroll rounded-lg border border-slate-100">
+						<PatientsTable
+							patients={patients ? patients : []}
+							totalPatients={totalPatients ? totalPatients : 0}
+						/>
+					</div>
+				</div>
 			</div>
 		</div>
 	);

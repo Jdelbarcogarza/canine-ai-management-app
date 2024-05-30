@@ -25,10 +25,7 @@ const PatientsTable: React.FC<Props> = ({patients, totalPatients}) => {
 
   return (
     <Table>
-    <TableCaption>
-      Click en fila para ver detalles de cada uno
-    </TableCaption>
-    <TableHeader>
+    <TableHeader className='bg-gray-50'>
       <TableRow>
         <TableHead className="w-[100px]">Nombre</TableHead>
         <TableHead>Raza</TableHead>
@@ -39,7 +36,7 @@ const PatientsTable: React.FC<Props> = ({patients, totalPatients}) => {
     <TableBody>
       {patients.length > 0 &&
         patients.map((patient: Pet) => (
-          <TableRow key={patient.id} onClick={() => navigator.push(`/dashboard/patient/${patient.id}`)}>
+          <TableRow key={patient.id} onClick={() => navigator.push(`/dashboard/patient/${patient.id}`)} className='even:bg-gray-50 odd:bg-white'>
             <TableCell className="font-medium">
               {patient.nombre_perro}
             </TableCell>
