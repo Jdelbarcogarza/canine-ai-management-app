@@ -37,7 +37,7 @@ export default function Login() {
 
 	return (
 		<div className="flex flex-col justify-center items-center absolute h-full w-full bg-cream-light">
-			<img className="fixed top-32 justify-center h-24 mb-12" src={"/fullLogo.jpeg" }/>
+			<img className="justify-center h-24 mb-12" src={"/fullLogo.jpeg" }/>
 			<Card className="w-full max-w-sm">
 				<CardHeader>
 					<CardTitle className="text-2xl text-center text-primary-dark-blue">Crear cuenta</CardTitle>
@@ -58,7 +58,7 @@ export default function Login() {
 							required
 						/>
 					</div>
-					<div className="grid gap-2 text-primary-dark-blue">
+					<div className="grid gap-2 ">
 						<Label htmlFor="password">Contraseña</Label>
 						<Input id="password" type="password" name="password" required />
 					</div>
