@@ -34,6 +34,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Inter as FontSans } from "next/font/google";
+import { Separator } from "@/components/ui/separator";
+
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -135,15 +137,15 @@ export default function DashboardLayout({
 										<span className="sr-only ">Toggle navigation menu</span>
 									</Button>
 								</SheetTrigger>
-								<SheetContent side="left" className="flex flex-col">
+								<SheetContent side="left" className="flex flex-col bg-cream-light">
 									<nav className="grid gap-2 text-lg font-medium">
 										<Link
 											href="#"
-											className="flex items-center gap-2 text-lg font-semibold"
+											className="flex flex-col items-center gap-2 text-lg font-semibold"
 										>
-											<Cross className="h-6 w-6" />
-											<span className="sr-only">VET.AI</span>
-											VET.AI
+											<img className="h-12 " src={"/fullLogo.jpeg" }/>
+											<Separator orientation="horizontal" className="my-3" />
+											
 										</Link>
 										<Link
 											href="/dashboard"
@@ -170,17 +172,15 @@ export default function DashboardLayout({
 										size="icon"
 										className="rounded-full"
 									>
-										<CircleUser className="h-5 w-5" />
+										
+										<img className="size-8 rounded-full" src={"/icon-vetai.jpeg" }/>
 										<span className="sr-only">Toggle user menu</span>
 									</Button>
 								</DropdownMenuTrigger>
 								<DropdownMenuContent align="end">
-									<DropdownMenuLabel>My Account</DropdownMenuLabel>
-									<DropdownMenuSeparator />
-									<DropdownMenuItem>Settings</DropdownMenuItem>
-									<DropdownMenuItem>Support</DropdownMenuItem>
-									<DropdownMenuSeparator />
-									<DropdownMenuItem onClick={() => console.log("Logout")}>Logout</DropdownMenuItem>
+									<DropdownMenuItem onClick={() => console.log("Logout")}>
+										<Link href="/" >Logout</Link>
+									</DropdownMenuItem>
 								</DropdownMenuContent>
 							</DropdownMenu>
 						</header>
