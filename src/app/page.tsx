@@ -39,7 +39,7 @@ export default function Login() {
 	return (
 		<div className="flex flex-col justify-center items-center absolute h-full w-full bg-cream-light">
 			<img className="justify-center h-24 mb-12" src={"/fullLogo.jpeg" }/>
-			<Card className="w-full max-w-sm">
+			<Card className="w-9/12 max-w-sm">
 				<CardHeader>
 					<CardTitle className="text-2xl text-center text-primary-dark-blue">Inicio de sesión</CardTitle>
 					<CardDescription className="text-center">

@@ -30,7 +30,7 @@ export default async function PatientDetails({
 
 	return (
 		<div className="flex flex-col">
-			<div className="flex flex-row mb-8 space-x-12">
+			<div className="flex flex-row mb-8 space-x-4">
 				<button type="button">
 					<Link href="/dashboard">
 						<svg className="w-5 h-5 text-primary-dark-blue" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">

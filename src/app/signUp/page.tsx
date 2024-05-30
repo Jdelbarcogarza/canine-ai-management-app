@@ -38,7 +38,7 @@ export default function Login() {
 	return (
 		<div className="flex flex-col justify-center items-center absolute h-full w-full bg-cream-light">
 			<img className="justify-center h-24 mb-12" src={"/fullLogo.jpeg" }/>
-			<Card className="w-full max-w-sm">
+			<Card className="w-9/12 max-w-sm">
 				<CardHeader>
 					<CardTitle className="text-2xl text-center text-primary-dark-blue">Crear cuenta</CardTitle>
 					<CardDescription className="text-center">
@@ -63,8 +63,12 @@ export default function Login() {
 						<Input id="password" type="password" name="password" required />
 					</div>
 				</CardContent>
-				<CardFooter>
+				<CardFooter className="flex flex-col">
 					<Button className="w-full" type="submit">Crear cuenta</Button>
+					<Separator orientation="horizontal" className="my-3" />
+					<Button asChild variant="link">
+						<Link href="/" className="text-primary-dark-blue">Inicia sesión</Link>
+					</Button>
 				</CardFooter>
 				</form>
 			</Card>
