@@ -61,6 +61,7 @@ export default function Login() {
 					<div className="grid gap-2 ">
 						<Label htmlFor="password">Contraseña</Label>
 						<Input id="password" type="password" name="password" required />
+						<p className="text-xs text-gray-400">La contraseña debe tener al menos 6 caracteres</p>
 					</div>
 				</CardContent>
 				<CardFooter className="flex flex-col">
