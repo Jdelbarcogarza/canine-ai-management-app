@@ -1,7 +1,6 @@
 'use client'
 import { Button } from "@/components/ui/button"
 import Link from "next/link";
-import { Label } from "@/components/ui/label";
 import { supabase } from "@/lib/supabase/client";
 import { format } from "date-fns";
 import Image from "next/image";

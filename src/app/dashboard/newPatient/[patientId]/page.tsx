@@ -104,8 +104,7 @@ const PatientForm = ({ params }: { params: { patientId: string } }) => {
 			<div className="flex flex-col justify-center text-center items-center">
 				<h1 className="mb-4">Registrar al paciente</h1>
 				<p className="w-10/12 text-sm text-slate-400 mb-4">
-					Ingresa aqui la información del paciente para registrarlo en el
-					sistema
+					Ingresa aqui la información del paciente para registrarlo en el sistema
 				</p>
 			</div>
 
@@ -153,6 +152,10 @@ const PatientForm = ({ params }: { params: { patientId: string } }) => {
 								<SelectLabel>Color</SelectLabel>
 								<SelectItem value="negro">Negro</SelectItem>
 								<SelectItem value="blanco">Blanco</SelectItem>
+								<SelectItem value="gris">Gris</SelectItem>
+								<SelectItem value="cafe">Café</SelectItem>
+								<SelectItem value="beige">Beige</SelectItem>
+								<SelectItem value="otro">Otro</SelectItem>
 							</SelectGroup>
 						</SelectContent>
 					</Select>

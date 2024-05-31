@@ -167,7 +167,7 @@ export default function DashboardLayout({
 							<DropdownMenu>
 								<DropdownMenuTrigger asChild>
 									<Button
-										variant="secondary"
+										variant="default"
 										size="icon"
 										className="rounded-full"
 									>
