@@ -1,6 +1,7 @@
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/lib/supabase/client";
 import { formatDate } from "date-fns";
+import Image from "next/image";
 
 const getPageData = async (patientId: string) => {
 	const pet = await supabase.from("Mascotas").select("*").eq("id", patientId);
@@ -10,13 +11,16 @@ const getPageData = async (patientId: string) => {
 			.from("Clientes")
 			.select("*")
 			.eq("id", pet!.data[0]!.owner_id!);
-
+			
 		if (!owner.error) {
-			return { owner: owner.data[0], pet: pet.data[0] as Pet };
+			const pic = supabase.storage.from("dogPictures").getPublicUrl(`dogPics/${patientId}`, {download: true})
+			return { owner: owner.data[0], pet: pet.data[0] as Pet, pic: pic.data.publicUrl };
 		}
 	}
 
-	return { message: pet!.error!.message };
+
+
+	return { message: pet!.error!.message, pic: "" };
 };
 
 export default async function PatientDetails({
@@ -24,13 +28,14 @@ export default async function PatientDetails({
 }: {
 	params: { patientId: string };
 }) {
-	const { pet, owner, message } = await getPageData(params.patientId);
+	const { pet, owner, message, pic } = await getPageData(params.patientId);
 
-	console.log(pet, owner);
+	console.log(pic);
 
 	return (
 		<div>
 			<h2>Detalles de paciente</h2>
+			<Image className="size-64" width={256} height={256} src={pic} alt="Pet image" />
 			<div className="relative overflow-x-auto rounded-md">
 				<table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
 					<tbody>

@@ -20,6 +20,7 @@ import {
 	ChangeEvent,
 	FormEventHandler,
 	SyntheticEvent,
+	useEffect,
 	useRef,
 	useState,
 } from "react";
@@ -90,6 +91,10 @@ export default function Home() {
 		e.preventDefault();
 		// TODO. generar IDs con UUID desde el front.
 
+		const user = await supabase.auth.getSession();
+
+		console.log(user.data)
+
 		const recordId = uuidv4();
 
 		const { data, error } = await supabase
@@ -98,11 +103,17 @@ export default function Home() {
 
 			// subir archivo a storage
 		if (file) {
-			await supabase.storage
+			const postImg =  await supabase.storage
 				.from("dogPictures")
-				.upload(`public/${recordId}.png`, file, {
-					cacheControl: "3600",
-				});
+				// nombre del archivo es id del paciente
+				.upload(`dogPics/${recordId}`, file);
+
+				if (!postImg.error) {
+
+					console.log(postImg.data)
+				} else {
+					console.log("H HABIDO UN ERROR SUBIENDO LA FOTO",postImg.error)
+				}
 		}
 
 		if (!error) {
