@@ -99,7 +99,8 @@ export default function DashboardLayout({
 										href="/dashboard/newPatient"
 										className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
 									>
-										<ShoppingCart className="h-4 w-4" />
+										<ScanEye className="h-5 w-5" />
+
 										Nuevo paciente
 									</Link>
 								</nav>
