@@ -4,6 +4,8 @@ import { format, subWeeks } from "date-fns";
 import Error from "next/error";
 import React from "react";
 
+const dynamic = 'force-dynamic'
+
 async function patientsList() {
 	// obtener todos los pacientes registrados esta semana
 	const patients = await supabase
