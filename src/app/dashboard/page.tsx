@@ -11,7 +11,7 @@ async function patientsList() {
 	const patients = await supabase
 		.from("Mascotas")
 		.select("*", { count: "exact" })
-		.gt("created_at", subWeeks(new Date(), 1).toISOString());
+
 
 	console.log(patients);
 
